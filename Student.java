@@ -1,0 +1,47 @@
+public class Student 
+{
+    private int id;
+    private int yrLvl;
+    private String fName;
+    private String mName;
+    private String lName;
+    private String address;
+    private String program;
+    private String schedule;
+    Student(int id, int yrLvl, 
+    String fName, String mName, String lName, 
+    String address, String program, String schedule)
+    {
+        this.id = id;
+        this.yrLvl = yrLvl;
+        this.fName = fName;
+        this.mName = mName;
+        this.lName = lName;
+        this.address = address;
+        this.program = program;
+        this.schedule = schedule;
+    }
+    // public void setID(int id){this.id = id;}
+    public int getID(){return this.id;}
+
+    // public void setyrLvl(int yrLvl){this.yrLvl = yrLvl;}
+    public int getyrLvl(){return this.yrLvl;}
+
+    // public void setfName(String fName) { this.fName = fName; }
+    public String getfName() { return this.fName; }
+
+    // public void setmName(String mName) { this.mName = mName; }
+    public String getmName() { return this.mName; }
+
+    // public void setlName(String lName) { this.lName = lName; }
+    public String getlName() { return this.lName; }
+
+    // public void setAddress(String address) { this.address = address; }
+    public String getAddress() { return this.address; }
+
+    // public void setProgram(String program) { this.program = program; }
+    public String getProgram() { return this.program; }
+
+    // public void setSchedule(String schedule) { this.schedule = schedule; }
+    public String getSchedule() { return this.schedule; }
+}
