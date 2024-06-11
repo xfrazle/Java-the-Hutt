@@ -7,10 +7,8 @@ public class Student
     private String lName;
     private String address;
     private String program;
-    private String schedule;
-    Student(int id, int yrLvl, 
-    String fName, String mName, String lName, 
-    String address, String program, String schedule)
+    // private String schedule;
+    Student(int id, int yrLvl, String fName, String mName, String lName, String address, String program/*, String schedule*/)
     {
         this.id = id;
         this.yrLvl = yrLvl;
@@ -19,8 +17,17 @@ public class Student
         this.lName = lName;
         this.address = address;
         this.program = program;
-        this.schedule = schedule;
+        // this.schedule = schedule;
     }
+    void printStudent()
+    {
+        System.out.println("Name: " + getlName() + ", " + getfName() + " " + getmName());
+        System.out.println("Student ID: " + getID());
+        System.out.println("Year: " + getyrLvl());
+        System.out.println("Address: " + getAddress());
+        System.out.println("Program: " + getProgram());
+    }
+
     // public void setID(int id){this.id = id;}
     public int getID(){return this.id;}
 
@@ -43,5 +50,5 @@ public class Student
     public String getProgram() { return this.program; }
 
     // public void setSchedule(String schedule) { this.schedule = schedule; }
-    public String getSchedule() { return this.schedule; }
+    // public String getSchedule() { return this.schedule; }
 }
