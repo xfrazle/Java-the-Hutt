@@ -1,10 +1,7 @@
-public class Student 
+public class Student extends Person
 {
     private int id;
     private int yrLvl;
-    private String fName;
-    private String mName;
-    private String lName;
     private String address;
     private String program;
     // private String schedule;
@@ -12,22 +9,21 @@ public class Student
     {
         this.id = id;
         this.yrLvl = yrLvl;
-        this.fName = fName;
-        this.mName = mName;
-        this.lName = lName;
-        this.address = address;
-        this.program = program;
+        setfName(fName.toUpperCase());
+        setmName(mName.toUpperCase());
+        setlName(lName.toUpperCase());
+        this.address = address.toUpperCase();
+        this.program = program.toUpperCase();
         // this.schedule = schedule;
     }
     void printStudent()
     {
-        System.out.println("Name: " + getlName() + ", " + getfName() + " " + getmName());
-        System.out.println("Student ID: " + getID());
-        System.out.println("Year: " + getyrLvl());
-        System.out.println("Address: " + getAddress());
-        System.out.println("Program: " + getProgram());
+        System.out.println("Name:       " + getlName() + ", " + getfName() + " " + getmName());
+        System.out.println("ID:         " + getID());
+        System.out.println("Year:       " + getyrLvl());
+        System.out.println("Address:    " + getAddress());
+        System.out.println("Program:    " + getProgram());        
     }
-
     // public void setID(int id){this.id = id;}
     public int getID(){return this.id;}
 
@@ -35,13 +31,13 @@ public class Student
     public int getyrLvl(){return this.yrLvl;}
 
     // public void setfName(String fName) { this.fName = fName; }
-    public String getfName() { return this.fName; }
+    // public String getfName() { return this.fName; }
 
     // public void setmName(String mName) { this.mName = mName; }
-    public String getmName() { return this.mName; }
+    // public String getmName() { return this.mName; }
 
     // public void setlName(String lName) { this.lName = lName; }
-    public String getlName() { return this.lName; }
+    // public String getlName() { return this.lName; }
 
     // public void setAddress(String address) { this.address = address; }
     public String getAddress() { return this.address; }
