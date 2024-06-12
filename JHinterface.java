@@ -1,4 +1,4 @@
-interface JHinterface { // use for student management and schedule management
+interface JHinterface { // use for student management, schedule management and course management
     void add();
     void view();
     void edit();
