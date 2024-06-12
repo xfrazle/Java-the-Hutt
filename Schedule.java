@@ -30,6 +30,6 @@ public class Schedule extends Course
         // System.out.println("Time:           " + getTime());
         // System.out.println("Room:           " + getRoom());
         // System.out.println("Section:        " + getSection());  
-        System.out.println("Course Code: " + getCode() + "  Course: " + getTitle() + "  Units: " + getUnits() + "   Day: " + getDay() + "   Time: " + getTime() + " Room: " + getRoom() + " Section: " + getSection());
+        System.out.println("|| Course Code: " + getCode() + " || Course: " + getTitle() + " || Units: " + getUnits() + " || Day: " + getDay() + " || Time: " + getTime() + " || Room: " + getRoom() + " || Section: " + getSection() + " ||");
     }
 }
