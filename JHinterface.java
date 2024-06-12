@@ -2,5 +2,5 @@ interface JHinterface { // use for student management, schedule management and c
     void add();
     void view();
     void edit();
-    void detele();
+    void delete();
 }

@@ -1,22 +1,45 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class StudentManager implements JHinterface{
-    ArrayList<Student>student = new ArrayList<>();
+    ArrayList<Student>students = new ArrayList<>();
+    
+    private Scanner uInput = new Scanner(System.in);
 
     @Override
-    public void add() {
-        // just use the constructor, be sure to add strings
-
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    public void add() 
+    {
+        System.out.print("Enter student ID: ");
+        int id;
+        System.out.print("Enter first name: ");
+        String fName;
+        System.out.print("Enter middle name: ");
+        String mName;
+        System.out.print("Enter last name: ");
+        String lName;
+        System.out.print("Enter Address: ");
+        String address;
+        System.out.print("Enter gender: ");
+        System.out.print("Enter Birthdate: ");
+        System.out.print("Enter Degree: ");
+        System.out.print("Enter year level: ");
     }
 
     @Override
     public void view() {
-        // use printStudent() fuction
+        // use printStudent() function
+        for (Student student : students) 
+        {
+            System.out.println("--------------------");
+            System.out.println("ID: " + student.getID());
+            System.out.println("Name: " + student.getfName());
+            System.out.println("Year: " + student.getyrLvl());
+            System.out.println("Address: " + student.getAddress());
+            System.out.println("--------------------");
 
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'view'");
+        // throw new UnsupportedOperationException("Unimplemented method 'view'");
+        }
     }
 
     @Override
@@ -31,15 +54,15 @@ public class StudentManager implements JHinterface{
         // only allow 1/2/3 as input
 
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'edit'");
+        // throw new UnsupportedOperationException("Unimplemented method 'edit'");
 
     }
 
     @Override
-    public void detele() {
+    public void delete() {
         // ask for student id to identify student
 
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'detele'");
+        // throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 }
