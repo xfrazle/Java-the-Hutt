@@ -1,10 +1,16 @@
-import java.util.ArrayList;
+class Main {
+    public static void main(String[] args) {
+        StudentManager manage = new StudentManager();
+        manage.add();
+        manage.view();
+        // manage.edit();
 
-class Main{
-    public static void main(String[] args) 
-    {
-            StudentManager manage = new StudentManager();
-            manage.add();
-            manage.view();
+        System.out.println("SECOND PASS /////////////////////");
+
+        manage.delete();
+        manage.view();
+
+
+
     }
 }
