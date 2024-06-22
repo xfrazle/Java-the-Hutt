@@ -1,11 +1,28 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Iterator;
+import java.io.FileWriter;
+import java.io.FileReader;
+
 
 public class StudentManager implements JHinterface {
 
     ArrayList<Student> students = new ArrayList<>();
     private Scanner uInput = new Scanner(System.in);
+    
+
+    public static void studentWriter(int id, int yrLvl, String fName, String mName, String lName, String address, String degree, String specialization, String gender, String bdate, String bMonth, String bYear/*, String schedule*/)
+    {
+        String data = "";
+        try{
+            FileWriter studentInfo = new FileWriter(".\\JH_DATA\\Student_Info.txt");
+            
+            data += Integer.toString(id) + '\n';
+
+            studentInfo.write(data);
+            studentInfo.close();
+        }catch(Exception e){}
+    }
 
     @Override
     public void add() {
@@ -48,13 +65,14 @@ public class StudentManager implements JHinterface {
 
         Student Albert = new Student(201812763, 2, "john albert", "arrubas", "castaneda", "2007 d", "it", "agd", "male",
                 "18", "May", "1998");
-        Student Alison = new Student(201812345, 3, "Khris Guia", "", "Magnaye", "123 Mindanao", "IT", "AGD", "Male",
-                "1", "December", "1996");
-        Student Xen = new Student(198012345, 20, "Floyd", "", "Xamora", "1223 Mindanao", "IT", "DA", "Male", "1",
-                "December", "1996");
+        // Student Alison = new Student(201812345, 3, "Khris Guia", "", "Magnaye", "123 Mindanao", "IT", "AGD", "Male",
+        //         "1", "December", "1996");
+        // Student Xen = new Student(198012345, 20, "Floyd", "", "Xamora", "1223 Mindanao", "IT", "DA", "Male", "1",
+        //         "December", "1996");
+
         students.add(Albert);
-        students.add(Alison);
-        students.add(Xen);
+        // students.add(Alison);
+        // students.add(Xen);
 
     }
 
