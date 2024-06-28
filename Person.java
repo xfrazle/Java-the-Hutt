@@ -32,7 +32,5 @@ abstract class Person {
 
     public void setbYear(String bYear) { this.bYear = bYear; }
     public String getbYear() { return this.bYear; }
-
-
 }
 // just made this class so we can say we used polymorpism heh
