@@ -231,6 +231,23 @@ public class StudentManager implements JHinterface {
                                         userInput = input.nextLine();
                                         yrLvl = userInput;
                                         break;
+                                    case 2:
+                                        System.out.print("Enter First name: ");
+                                        System.out.print("Enter Middle name: ");
+                                        System.out.print("Enter Last name: ");
+                                        break;
+                                    case 3:
+                                        System.out.print("Enter new Address: ");
+                                        break;
+                                    case 4:
+                                        System.out.print("Enter new Course ");
+                                        break;
+                                    case 6:
+                                        System.out.print("Enter new Birth Date: ");
+                                        userInput = input.nextLine();
+                                        yrLvl = userInput;
+                                        break;
+                                            
                                     default:
                                         System.out.println("Invalid choice.");
                                         break;
