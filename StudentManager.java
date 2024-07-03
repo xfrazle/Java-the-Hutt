@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class StudentManager implements JHinterface {
 
+    Scanner input = new Scanner(System.in);
+
     private static boolean studentExist(String id) {
         try {
             try (BufferedReader studentInfo = new BufferedReader(new FileReader(".\\JH_DATA\\Student_Info.txt"))) {
@@ -102,7 +104,6 @@ public class StudentManager implements JHinterface {
 
     @Override
     public void add() {
-
         // System.out.print("Enter student ID: ");
         // int id = uInput.nextInt();
         // uInput.nextLine();
@@ -184,107 +185,108 @@ public class StudentManager implements JHinterface {
 
     @Override
     public void edit(String id) {
+        try {
+            String file = ".\\JH_DATA\\Student_Info.txt";
+            boolean found = false;
+            List<String> updatedStudentData = new ArrayList<>();
 
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.println("What do you want to edit?");
-            System.out.println("[1] Year level");
-            System.out.println("[2] Full Name");
-            System.out.println("[1] Address");
-            System.out.println("[2] Course");
-            System.out.println("[1] Gender");
-            System.out.println("[2] Birth date");
-            int choice;
-            System.out.print(">> ");
-            choice = input.nextInt();
-            input.nextLine();
-            try {
-                String file = ".\\JH_DATA\\Student_Info.txt";
-                boolean found = false;
-                List<String> updatedStudentData = new ArrayList<>();
-                try (BufferedReader studentInfo = new BufferedReader(new FileReader(file))) {
-                    String key;
-                    boolean keyDetected = false;
-                    while ((key = studentInfo.readLine()) != null) {
-                        if (key.equals("**********")) {
-                            keyDetected = true;
-                            updatedStudentData.add(key);
-                            continue;
-                        }
-                        if (keyDetected) {
-                            String currentId = key;
-                            if (currentId.equals(id)) {
-                                String yrLvl = studentInfo.readLine();
-                                String fName = studentInfo.readLine();
-                                String mName = studentInfo.readLine();
-                                String lName = studentInfo.readLine();
-                                String address = studentInfo.readLine();
-                                String degree = studentInfo.readLine();
-                                String specialization = studentInfo.readLine();
-                                String gender = studentInfo.readLine();
-                                String bMonth = studentInfo.readLine();
-                                String bDate = studentInfo.readLine();
-                                String bYear = studentInfo.readLine();
-                                String userInput;
-                                switch (choice) {
-                                    case 1:
-                                        System.out.print("Enter new year level: ");
-                                        userInput = input.nextLine();
-                                        yrLvl = userInput;
-                                        break;
-                                    case 2:
-                                        System.out.print("Enter First name: ");
-                                        System.out.print("Enter Middle name: ");
-                                        System.out.print("Enter Last name: ");
-                                        break;
-                                    case 3:
-                                        System.out.print("Enter new Address: ");
-                                        break;
-                                    case 4:
-                                        System.out.print("Enter new Course ");
-                                        break;
-                                    case 6:
-                                        System.out.print("Enter new Birth Date: ");
-                                        userInput = input.nextLine();
-                                        yrLvl = userInput;
-                                        break;
-                                            
-                                    default:
-                                        System.out.println("Invalid choice.");
-                                        break;
-                                }
-                                updatedStudentData.add(id);
-                                updatedStudentData.add(yrLvl);
-                                updatedStudentData.add(fName.toUpperCase());
-                                updatedStudentData.add(mName.toUpperCase());
-                                updatedStudentData.add(lName.toUpperCase());
-                                updatedStudentData.add(address.toUpperCase());
-                                updatedStudentData.add(degree.toUpperCase());
-                                updatedStudentData.add(specialization.toUpperCase());
-                                updatedStudentData.add(gender.toUpperCase());
-                                updatedStudentData.add(bMonth.toUpperCase());
-                                updatedStudentData.add(bDate.toUpperCase());
-                                updatedStudentData.add(bYear.toUpperCase());
-                                found = true;
-                            } else {
-                                updatedStudentData.add(key);
+            
+            try (BufferedReader studentInfo = new BufferedReader(new FileReader(file))) {
+                String key;
+                boolean keyDetected = false;
+                while ((key = studentInfo.readLine()) != null) {
+                    if (key.equals("**********")) {
+                        keyDetected = true;
+                        updatedStudentData.add(key);
+                        continue;
+                    }
+                    if (keyDetected) {
+                        String currentId = key;
+                        if (currentId.equals(id)) {
+                            String yrLvl = studentInfo.readLine();
+                            String fName = studentInfo.readLine();
+                            String mName = studentInfo.readLine();
+                            String lName = studentInfo.readLine();
+                            String address = studentInfo.readLine();
+                            String degree = studentInfo.readLine();
+                            String specialization = studentInfo.readLine();
+                            String gender = studentInfo.readLine();
+                            String bMonth = studentInfo.readLine();
+                            String bDate = studentInfo.readLine();
+                            String bYear = studentInfo.readLine();
+                            String userInput;
+
+                            System.out.println("What do you want to edit?");
+                            System.out.println("[1] Year level");
+                            System.out.println("[2] Full Name");
+                            System.out.println("[1] Address");
+                            System.out.println("[2] Course");
+                            System.out.println("[1] Gender");
+                            System.out.println("[2] Birth date");
+                            int choice;
+                            System.out.print(">> ");
+                            choice = input.nextInt();
+                            input.nextLine();
+                            switch (choice) {
+                                case 1:
+                                    System.out.print("Enter new year level: ");
+                                    userInput = input.nextLine();
+                                    yrLvl = userInput;
+                                    break;
+                                case 2:
+                                    System.out.print("Enter First name: ");
+                                    System.out.print("Enter Middle name: ");
+                                    System.out.print("Enter Last name: ");
+                                    break;
+                                case 3:
+                                    System.out.print("Enter new Address: ");
+                                    break;
+                                case 4:
+                                    System.out.print("Enter new Course ");
+                                    break;
+                                case 6:
+                                    System.out.print("Enter new Birth Date: ");
+                                    userInput = input.nextLine();
+                                    yrLvl = userInput;
+                                    break;
+
+                                default:
+                                    System.out.println("Invalid choice.");
+                                    break;
                             }
+                            updatedStudentData.add(id);
+                            updatedStudentData.add(yrLvl);
+                            updatedStudentData.add(fName.toUpperCase());
+                            updatedStudentData.add(mName.toUpperCase());
+                            updatedStudentData.add(lName.toUpperCase());
+                            updatedStudentData.add(address.toUpperCase());
+                            updatedStudentData.add(degree.toUpperCase());
+                            updatedStudentData.add(specialization.toUpperCase());
+                            updatedStudentData.add(gender.toUpperCase());
+                            updatedStudentData.add(bMonth.toUpperCase());
+                            updatedStudentData.add(bDate.toUpperCase());
+                            updatedStudentData.add(bYear.toUpperCase());
+                            found = true;
+                        } else {
+                            updatedStudentData.add(key);
                         }
                     }
                 }
-                if (!found) {
-                    System.out.println("STUDENT ." + id + "DOES NOT EXIST");
-                } else {
-                    try (FileWriter writer = new FileWriter(file)) {
-                        for (String line : updatedStudentData) {
-                            writer.write(line + "\n");
-                        }
-                    }
-                    System.out.println("Student data updated successfully.");
-                }
-            } catch (IOException e) {
-                System.out.println("EDIT METOHD: " + e.getMessage());
             }
+            if (!found) {
+                System.out.println("STUDENT ." + id + "DOES NOT EXIST");
+            } else {
+                try (FileWriter writer = new FileWriter(file)) {
+                    for (String line : updatedStudentData) {
+                        writer.write(line + "\n");
+                    }
+                }
+                System.out.println("Student data updated successfully.");
+            }
+        } catch (IOException e) {
+            System.out.println("EDIT METOHD: " + e.getMessage());
         }
+
     }
 
     @Override
@@ -330,4 +332,44 @@ public class StudentManager implements JHinterface {
             System.out.println("DEL METHOD:  " + e.getMessage());
         }
     }
+
+    public void search(String id) { // I DONT KNOW WHY I WROTE THIS LAST
+        File file = new File(".\\JH_DATA\\Student_Info.txt");
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String key;
+            while((key = reader.readLine()) != null){
+                if (key.equals("**********")){
+                    String studentID = reader.readLine();
+                    if (studentID.equals(id)){
+                        String yrLvl = reader.readLine();
+                        String fName = reader.readLine();
+                        String mName = reader.readLine();
+                        String lName = reader.readLine();
+                        String address = reader.readLine();
+                        String degree = reader.readLine();
+                        String specialization = reader.readLine();
+                        String gender = reader.readLine();
+                        String bMonth = reader.readLine();
+                        String bDate = reader.readLine();
+                        String bYear = reader.readLine();
+                        System.out.println("===========================================================");
+                        System.out.println("ID: " + id);
+                        System.out.println("Year " + yrLvl);
+                        System.out.println("Name: " + fName + " " + mName + " " + lName);
+                        System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
+                        System.out.println("Address: " + address);
+                        System.out.println("Degree: " + degree);
+                        System.out.println("Specialization: " + specialization);
+                        System.out.println("Gender: " + gender);
+                        System.out.println();
+                        System.out.println("===========================================================");
+                    }
+                }
+            }
+
+        } catch (Exception e) { System.out.println("SEARCH METHOD: " + e);}
+    }
+
+
 }
