@@ -8,25 +8,25 @@ public class Student extends Person {
 
     // private String program;
     // private String schedule;
-    Student(String id, String yrLvl, String fName, String mName, String lName, String address, String degree,
-            String specialization, String gender, String bdate, String bMonth, String bYear/* , String schedule */) {
-        this.id = id;
-        this.yrLvl = yrLvl;
-        this.address = address.toUpperCase();
-        this.degree = degree.toUpperCase();
-        this.specialization = specialization.toUpperCase();
-        // this.program = program.toUpperCase();
-        setfName(fName.toUpperCase());
-        setmName(mName.toUpperCase());
-        setlName(lName.toUpperCase());
-        setGender(gender.toUpperCase());
-        setbDate(bdate);
-        setbMonth(bMonth.toUpperCase());
-        setbYear(bYear);
+    // Student(String id, String yrLvl, String fName, String mName, String lName, String address, String degree,
+    //         String specialization, String gender, String bdate, String bMonth, String bYear/* , String schedule */) {
+    //     this.id = id;
+    //     this.yrLvl = yrLvl;
+    //     this.address = address.toUpperCase();
+    //     this.degree = degree.toUpperCase();
+    //     this.specialization = specialization.toUpperCase();
+    //     // this.program = program.toUpperCase();
+    //     setfName(fName.toUpperCase());
+    //     setmName(mName.toUpperCase());
+    //     setlName(lName.toUpperCase());
+    //     setGender(gender.toUpperCase());
+    //     setbDate(bdate);
+    //     setbMonth(bMonth.toUpperCase());
+    //     setbYear(bYear);
 
-        // setBDate(bday.toUpperCase());
-        // this.schedule = schedule;
-    }
+    //     // setBDate(bday.toUpperCase());
+    //     // this.schedule = schedule;
+    // }
 
     // void printStudent()
     // {

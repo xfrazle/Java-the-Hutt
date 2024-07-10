@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class StudentManager implements JHinterface {
 
     Scanner input = new Scanner(System.in);
 
-    private static boolean studentExist(String id) {
+    public static boolean studentExist(String id) {
         try {
             try (BufferedReader studentInfo = new BufferedReader(new FileReader(".\\JH_DATA\\Student_Info.txt"))) {
                 String key;
@@ -84,15 +85,14 @@ public class StudentManager implements JHinterface {
                         String bYear = studentInfo.readLine();
                         System.out.println("===========================================================");
                         System.out.println("ID: " + id);
-                        System.out.println("Year " + yrLvl);
+                        // System.out.println("Year " + yrLvl);
                         System.out.println("Name: " + fName + " " + mName + " " + lName);
-                        System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
-                        System.out.println("Address: " + address);
-                        System.out.println("Degree: " + degree);
-                        System.out.println("Specialization: " + specialization);
-                        System.out.println("Gender: " + gender);
-                        System.out.println();
-                        System.out.println("===========================================================");
+                        // System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
+                        // System.out.println("Address: " + address);
+                        // System.out.println("Degree: " + degree);
+                        // System.out.println("Specialization: " + specialization);
+                        // System.out.println("Gender: " + gender);
+                        // System.out.println("===========================================================");
                     }
                 }
             }
@@ -104,60 +104,114 @@ public class StudentManager implements JHinterface {
 
     @Override
     public void add() {
-        // System.out.print("Enter student ID: ");
-        // int id = uInput.nextInt();
-        // uInput.nextLine();
-        // System.out.print("Enter Year Level: "); // need exceptions
-        // int yrLvl = uInput.nextInt();
-        // uInput.nextLine();
-        // // Personal Infos
-        // System.out.print("Enter first name: ");
-        // String fName = uInput.nextLine();
-        // System.out.print("Enter middle name: ");
-        // String mName = uInput.nextLine();
-        // System.out.print("Enter last name: ");
-        // String lName = uInput.nextLine();
-        // System.out.print("Enter Address: ");
-        // String address = uInput.nextLine();
-        // System.out.print("Enter gender: "); // need exceptions
-        // String gender = uInput.nextLine();
-        // System.out.print("Enter Birth Month: ");
-        // String bMonth = uInput.nextLine();
-        // System.out.print("Enter Birth Date: ");
-        // String bDate = uInput.nextLine();
-        // System.out.print("Enter Birth Year: ");
-        // String bYear = uInput.nextLine();
-        // // School Info
-        // System.out.print("Bachelor's in [IT/CS]: "); // need exceptions
-        // String degree = uInput.nextLine();
-        // System.out.print("Specialization's in: "); // need exceptions
-        // String specialization = uInput.nextLine();
-        // Student student = new Student(id, yrLvl, fName, mName, lName, address,
-        // degree, specialization, gender, bDate, bMonth, bYear);
-        // students.add(student);
-        // studentWriter(id, yrLvl, fName, mName, lName, address,
-        // degree, specialization, gender, bDate, bMonth, bYear);
-        // students.add(student);
-        // Student Albert = new Student("201812763", "2", "john albert", "arrubas",
-        // "castaneda", "2007 d", "it", "agd",
-        // "male",
-        // "18", "May", "1998");
-        // Student Alison = new Student("201812345", "3", "Khris Guia", "", "Magnaye",
-        // "123 Mindanao", "IT", "AGD", "Male",
-        // "1", "December", "1996");
-        // Student Xen = new Student("198012345", "20", "Floyd", "", "Xamora", "1223
-        // Mindanao", "IT", "DA", "Male", "1",
-        // "December", "1996");
-        // students.add(Albert);
-        // students.add(Alison);
-        // students.add(Xen);
-        studentWriter("201812763", "2", "john albert", "arrubas", "castaneda", "2007 d", "it", "agd", "male",
-                "18", "May", "1998");
-        studentWriter("201812345", "3", "Khris Guia", "", "Magnaye", "123 Mindanao", "IT", "AGD", "Male",
-                "1", "December", "1996");
-        studentWriter("198012345", "20", "Floyd", "", "Xamora", "1223 Mindanao", "IT", "DA", "Male", "1",
-                "December", "1996");
+        String confirm;
+        String id;
+        String yrLvl;
+        String fName;
+        String mName;
+        String lName;
+        String address;
+        String degree;
+        String specialization;
+        String gender;
+        String bMonth;
+        String bDay;
+        String bYear;
 
+        do {
+            System.out.print("\033\143");
+            System.out.println("Enter student ID");
+            System.out.print(">> ");
+            id = input.nextLine();
+            System.out.println("Year Level");
+            System.out.print(">> ");
+            yrLvl = input.nextLine();
+            System.out.println("Enter First Name");
+            System.out.print(">> ");
+            fName = input.nextLine();
+            System.out.println("Enter Middle Name");
+            System.out.print(">> ");
+            mName = input.nextLine();
+            System.out.println("Enter Last Name");
+            System.out.print(">> ");
+            lName = input.nextLine();
+            System.out.println("Enter Address");
+            System.out.print(">> ");
+            address = input.nextLine();
+            do {
+                System.out.println("Enter Degree");
+                System.out.print(">> ");
+                degree = input.nextLine();
+                System.out.println("Enter Specialization");
+                System.out.print(">> ");
+                specialization = input.nextLine();
+                if (!degree.equalsIgnoreCase("IT") & !degree.equalsIgnoreCase("CS")) {
+                    System.out.println("INPUT IT or CS <<<<<");
+                }
+            } while (!degree.equalsIgnoreCase("IT") & !degree.equalsIgnoreCase("CS"));
+
+            do {
+                System.out.println("Enter Gender");
+                System.out.print(">> ");
+                gender = input.nextLine();
+                if (!gender.equalsIgnoreCase("M") & !gender.equalsIgnoreCase("F")) {
+                    System.out.println("INPUT M or F <<<<<");
+                }
+            } while (!gender.equalsIgnoreCase("M") & !gender.equalsIgnoreCase("F"));
+
+            String[] months = {
+                "January", "Febraury", "March", "April",
+                "May", "June", "July", "August",
+                "September", "October", "November", "December"
+            };
+            for (int i = 0; i < months.length; i++) {
+                months[i] = months[i].toUpperCase();
+            }
+
+            do {
+                System.out.println("Enter Birth Month");
+                System.out.print(">> ");
+                bMonth = input.nextLine();
+                int month = Integer.parseInt(bMonth);
+                if (month < 1 || month > 12) {
+                    System.out.println("Please enter a value between 1 and 12. <<<<<");
+                }
+            } while (!bMonth.matches("\\d+") || Integer.parseInt(bMonth) < 1 || Integer.parseInt(bMonth) > 12);
+
+            do {
+                System.out.println("Enter Birth Day");
+                System.out.print(">> ");
+                bDay = input.nextLine();
+                int day = Integer.parseInt(bDay);
+                if (day < 1 || day > 31) {
+                    System.out.println("Invalid day. Please enter a value between 1 and 31.");
+                }
+            } while (!bDay.matches("\\d+") || Integer.parseInt(bDay) < 1 || Integer.parseInt(bDay) > 31);
+
+            do {
+                System.out.println("Enter Birth Year");
+                System.out.print(">> ");
+                bYear = input.nextLine();
+                if (bYear.length() != 4 || !bYear.matches("\\d{4}")) {
+                    System.out.println("Invalid input. Please enter a 4-digit year.");
+                }
+            } while (bYear.length() != 4 || !bYear.matches("\\d{4}"));
+
+            System.out.print("\033\143");
+            System.out.println("DATA ENTERED");
+            System.out.println("Student ID: " + id);
+            System.out.println("Year: Level" + yrLvl);
+            System.out.println("Full Name: " + lName + " " + fName + " " + mName);
+            System.out.println("Address: " + address);
+            System.out.println(degree + specialization);
+            System.out.println("Gender: " + gender);
+            System.out.println("Birth Date: " + months[Integer.parseInt(bMonth) - 1] + " - " + bDay + " - " + bYear);
+
+            System.out.println("data entered valid? ");
+            System.out.print(">> ");
+            confirm = input.nextLine();
+        } while (!confirm.equalsIgnoreCase("Y"));
+        studentWriter(id, yrLvl, fName, mName, lName, address, degree, specialization, gender, bDay, bMonth, bYear);
     }
 
     @Override
@@ -190,7 +244,6 @@ public class StudentManager implements JHinterface {
             boolean found = false;
             List<String> updatedStudentData = new ArrayList<>();
 
-            
             try (BufferedReader studentInfo = new BufferedReader(new FileReader(file))) {
                 String key;
                 boolean keyDetected = false;
@@ -214,42 +267,192 @@ public class StudentManager implements JHinterface {
                             String bMonth = studentInfo.readLine();
                             String bDate = studentInfo.readLine();
                             String bYear = studentInfo.readLine();
+
+                            System.out.print("\033\143");
+                            System.out.println("===========================================================");
+                            System.out.println("CURRENTLY EDITING");
+                            System.out.println("ID: " + id);
+                            System.out.println("Year " + yrLvl);
+                            System.out.println("Name: " + fName + " " + mName + " " + lName);
+                            System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
+                            System.out.println("Address: " + address);
+                            System.out.println("Degree: " + degree);
+                            System.out.println("Specialization: " + specialization);
+                            System.out.println("Gender: " + gender);
+
+                            int choice;
+                            // int intUserInput;
                             String userInput;
 
-                            System.out.println("What do you want to edit?");
-                            System.out.println("[1] Year level");
-                            System.out.println("[2] Full Name");
-                            System.out.println("[1] Address");
-                            System.out.println("[2] Course");
-                            System.out.println("[1] Gender");
-                            System.out.println("[2] Birth date");
-                            int choice;
-                            System.out.print(">> ");
-                            choice = input.nextInt();
-                            input.nextLine();
+                            do {
+                                System.out.println("What do you want to edit?");
+                                System.out.println("[1] Year level");
+                                System.out.println("[2] Full Name");
+                                System.out.println("[3] Address");
+                                System.out.println("[4] Course");
+                                // System.out.println("[5] Gender");
+                                System.out.println("[5] Birth date");
+                                System.out.print(">> ");
+                                try {
+                                    choice = input.nextInt();
+                                    input.nextLine();
+                                    if (choice < 1 || choice > 5) {
+                                        System.out.println("INVALID CHOICE");
+                                    }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Invalid input. Please enter an integer.");
+                                    input.nextLine();
+                                    choice = 0;
+                                }
+                            } while (choice < 1 || choice > 6);
+
                             switch (choice) {
                                 case 1:
-                                    System.out.print("Enter new year level: ");
-                                    userInput = input.nextLine();
-                                    yrLvl = userInput;
+                                    do {
+                                        System.out.println("===========================================================");
+                                        System.out.println("CURRENTLY EDITING");
+                                        System.out.println("ID: " + id);
+                                        System.out.println("Year " + yrLvl);
+                                        System.out.println("Name: " + fName + " " + mName + " " + lName);
+                                        System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
+                                        System.out.println("Address: " + address);
+                                        System.out.println("Degree: " + degree);
+                                        System.out.println("Specialization: " + specialization);
+                                        System.out.println("Gender: " + gender);
+                                        System.out.println("===========================================================");
+                                        System.out.println("Enter new year level: ");
+                                        System.out.print(">> ");
+                                        try {
+                                            userInput = input.nextLine();
+                                            yrLvl = userInput;
+                                            if (Integer.parseInt(yrLvl) < 1 || Integer.parseInt(yrLvl) > 5) {
+                                                System.out.println("ENTER YEAR [1][2][3][4][5] <<<<<");
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            System.out.println("Invalid input. Please enter an integer.");
+                                            System.out.print("\033\143");
+                                        }
+                                    } while (Integer.parseInt(yrLvl) < 1 || Integer.parseInt(yrLvl) > 5);
+
                                     break;
-                                case 2:
-                                    System.out.print("Enter First name: ");
-                                    System.out.print("Enter Middle name: ");
-                                    System.out.print("Enter Last name: ");
+                                case 2: // NAMENAMENAMEN
+                                    System.out.print("\033\143");
+                                    System.out.println("===========================================================");
+                                    System.out.println("CURRENTLY EDITING");
+                                    System.out.println("ID: " + id);
+                                    System.out.println("Year " + yrLvl);
+                                    System.out.println("Name: " + fName + " " + mName + " " + lName);
+                                    System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
+                                    System.out.println("Address: " + address);
+                                    System.out.println("Degree: " + degree);
+                                    System.out.println("Specialization: " + specialization);
+                                    System.out.println("Gender: " + gender);
+                                    System.out.println("===========================================================");
+                                    System.out.println("Enter First name: ");
+                                    System.out.print(">> ");
+                                    userInput = input.nextLine();
+                                    fName = userInput;
+                                    System.out.println("Enter Middle name: ");
+                                    System.out.print(">> ");
+                                    userInput = input.nextLine();
+                                    mName = userInput;
+                                    System.out.println("Enter Last name: ");
+                                    System.out.print(">> ");
+                                    userInput = input.nextLine();
+                                    lName = userInput;
                                     break;
                                 case 3:
-                                    System.out.print("Enter new Address: ");
+                                    System.out.print("\033\143");
+                                    System.out.println("Enter new Address: ");
+                                    System.out.print(">> ");
+                                    userInput = input.nextLine();
+                                    address = userInput;
                                     break;
                                 case 4:
-                                    System.out.print("Enter new Course ");
-                                    break;
-                                case 6:
-                                    System.out.print("Enter new Birth Date: ");
-                                    userInput = input.nextLine();
-                                    yrLvl = userInput;
-                                    break;
+                                    System.out.print("\033\143");
+                                    do {
 
+                                        System.out.println("Enter new Course");
+                                        System.out.println("DEGREE");
+                                        System.out.print(">> ");
+                                        try {
+                                            userInput = input.nextLine();
+                                            degree = userInput;
+                                            System.out.println("debug: " + degree);
+                                            System.out.print("\033\143");
+                                        } catch (InputMismatchException e) {
+                                            e.getMessage();
+                                        }
+                                        if (!degree.equalsIgnoreCase("IT") & !degree.equalsIgnoreCase("CS")) {
+                                            System.out.println("INPUT IT or CS <<<<<");
+                                        }
+                                    } while (!degree.equalsIgnoreCase("IT") & !degree.equalsIgnoreCase("CS"));
+                                    // if(degree.equalsIgnoreCase("IT"))
+                                    // if(degree.equalsIgnoreCase("CS"))
+                                    System.out.println("SPECIALIZATION");
+                                    System.out.print(">> ");
+                                    userInput = input.nextLine();
+                                    specialization = userInput;
+                                    break;
+                                case 5:
+                                    String[] months = {
+                                        "January", "Febraury", "March", "April",
+                                        "May", "June", "July", "August",
+                                        "September", "October", "November", "December"
+                                    };
+                                    for (int i = 0; i < months.length; i++) {
+                                        months[i] = months[i].toUpperCase();
+                                    }
+                                    do {
+                                        System.out.print("\033\143");
+                                        System.out.println(">MONTH<" + " DAY" + " YEAR");
+                                        System.out.println("Enter new Birth Month (1-12):");
+                                        System.out.print(">> ");
+                                        try {
+                                            bMonth = input.nextLine();
+                                            int month = Integer.parseInt(bMonth);
+                                            if (month < 1 || month > 12) {
+                                                System.out.println("Please enter a value between 1 and 12.");
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            System.out.println("Invalid input. Please enter an integer.");
+                                        }
+                                    } while (!bMonth.matches("\\d+") || Integer.parseInt(bMonth) < 1 || Integer.parseInt(bMonth) > 12);
+
+                                    do {
+                                        System.out.print("\033\143");
+                                        System.out.println(months[Integer.parseInt(bMonth) - 1] + " >DAY<" + " YEAR");
+                                        System.out.println("Enter new Birth Day (1-31):");
+                                        System.out.print(">> ");
+                                        try {
+                                            bDate = input.nextLine();
+                                            int day = Integer.parseInt(bDate);
+                                            if (day < 1 || day > 31) {
+                                                System.out.println("Invalid day. Please enter a value between 1 and 31.");
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            System.out.println("Invalid input. Please enter an integer.");
+                                        }
+                                    } while (!bDate.matches("\\d+") || Integer.parseInt(bDate) < 1 || Integer.parseInt(bDate) > 31);
+
+                                    do {
+                                        System.out.print("\033\143");
+                                        System.out.println(months[Integer.parseInt(bMonth) - 1] + " " + bDate + " >YEAR<");
+                                        System.out.println("Enter new Birth Year (4 digits):");
+                                        System.out.print(">> ");
+                                        try {
+                                            bYear = input.nextLine();
+                                            if (bYear.length() != 4 || !bYear.matches("\\d{4}")) {
+                                                System.out.println("Invalid input. Please enter a 4-digit year.");
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            System.out.println("Invalid input. Please enter an integer.");
+                                        }
+                                    } while (bYear.length() != 4 || !bYear.matches("\\d{4}"));
+
+                                    System.out.println("Birth Date: " + months[Integer.parseInt(bMonth) - 1] + " - " + bDate + " - " + bYear);
+
+                                    break;
                                 default:
                                     System.out.println("Invalid choice.");
                                     break;
@@ -336,12 +539,12 @@ public class StudentManager implements JHinterface {
     public void search(String id) { // I DONT KNOW WHY I WROTE THIS LAST
         File file = new File(".\\JH_DATA\\Student_Info.txt");
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String key;
-            while((key = reader.readLine()) != null){
-                if (key.equals("**********")){
+            while ((key = reader.readLine()) != null) {
+                if (key.equals("**********")) {
                     String studentID = reader.readLine();
-                    if (studentID.equals(id)){
+                    if (studentID.equals(id)) {
                         String yrLvl = reader.readLine();
                         String fName = reader.readLine();
                         String mName = reader.readLine();
@@ -368,8 +571,9 @@ public class StudentManager implements JHinterface {
                 }
             }
 
-        } catch (Exception e) { System.out.println("SEARCH METHOD: " + e);}
+        } catch (Exception e) {
+            System.out.println("SEARCH METHOD: " + e);
+        }
     }
-
 
 }
