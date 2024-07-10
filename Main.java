@@ -12,6 +12,11 @@ class Main {
         // manageSchedule.add();
         // manageSchedule.add();
 
+        // manageStudent.studentWriter("201812345", "3", "Khris Guia", "", "Magnaye", "123 Mindanao", "IT", "AGD", "Male",
+        // "1", "December", "1996");
+        // manageStudent.studentWriter("198012345", "20", "Floyd", "", "Xamora", "1223 Mindanao", "IT", "DA", "Male", "1",
+        // "December", "1996");
+
         EnrollStudent enrollment = new EnrollStudent();
         // enrollment.registration("201812763");
         // enrollment.enrollmentWriter("201812763", "MAT00001", 1);
@@ -84,19 +89,27 @@ class Main {
                                 break;
                             case "3":
                                 System.out.print("\033\143");
+                                manageStudent.view();
+                                System.out.println("Enter Student ID");
+                                System.out.print(">> ");
                                 String edit = input.nextLine();
+
                                 if (StudentManager.studentExist(edit)) {
                                     manageStudent.edit(edit);
                                 }
+                                input.nextLine();
                             case "4":
                                 System.out.print("\033\143");
+                                manageStudent.view();
+                                System.out.println("Enter Student ID");
+                                System.out.print(">> ");
                                 String delete;
                                 delete = input.nextLine();
-                                manageStudent.view();
+
                                 if (StudentManager.studentExist(delete)) {
                                     manageStudent.del(delete);
                                 }
-
+                                input.nextLine();
                             default:
                         }
                     } while (!studentChoice.equals("<"));
