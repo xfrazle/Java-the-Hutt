@@ -169,6 +169,7 @@ public class StudentManager implements JHinterface {
             }
 
             do {
+
                 System.out.println("Enter Birth Month");
                 System.out.print(">> ");
                 bMonth = input.nextLine();
@@ -207,7 +208,7 @@ public class StudentManager implements JHinterface {
             System.out.println("Gender: " + gender);
             System.out.println("Birth Date: " + months[Integer.parseInt(bMonth) - 1] + " - " + bDay + " - " + bYear);
 
-            System.out.println("data entered valid? ");
+            System.out.println("data entered are valid? [Y/N] ");
             System.out.print(">> ");
             confirm = input.nextLine();
         } while (!confirm.equalsIgnoreCase("Y"));
@@ -274,7 +275,7 @@ public class StudentManager implements JHinterface {
                             System.out.println("ID: " + id);
                             System.out.println("Year " + yrLvl);
                             System.out.println("Name: " + fName + " " + mName + " " + lName);
-                            System.out.println("Age: " + bDate + " " + bMonth + " " + bYear);
+                            System.out.println("BirthDate: " + bDate + " " + bMonth + " " + bYear);
                             System.out.println("Address: " + address);
                             System.out.println("Degree: " + degree);
                             System.out.println("Specialization: " + specialization);
@@ -369,9 +370,8 @@ public class StudentManager implements JHinterface {
                                     address = userInput;
                                     break;
                                 case 4:
-                                    System.out.print("\033\143");
                                     do {
-
+                                        System.out.print("\033\143");
                                         System.out.println("Enter new Course");
                                         System.out.println("DEGREE");
                                         System.out.print(">> ");
@@ -395,6 +395,7 @@ public class StudentManager implements JHinterface {
                                     specialization = userInput;
                                     break;
                                 case 5:
+                                    System.out.print("\033\143");
                                     String[] months = {
                                         "January", "Febraury", "March", "April",
                                         "May", "June", "July", "August",

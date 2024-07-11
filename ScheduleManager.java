@@ -10,7 +10,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ScheduleManager {
-    private Integer scheduleID = 10000000;
+
+    private static Integer scheduleID = 10000000;
+
+    String xcode;
+    String xtitle;
+    String xunits;
+    String xyrLvl;
 
     Scanner input = new Scanner(System.in);
     ArrayList<Course> availableCourses = new ArrayList<>();
@@ -37,30 +43,30 @@ public class ScheduleManager {
         return false;
     }
 
-    // ScheduleManager() { // available courses
-    //     try (BufferedReader reader = new BufferedReader(new FileReader(courseFile))) {
-    //         String key;
-    //         while ((key = reader.readLine()) != null) {
-    //             code = reader.readLine();
-    //             title = reader.readLine();
-    //             units = reader.readLine();
-    //             yrLvl = reader.readLine();
+    ScheduleManager() { // available courses
+        try (BufferedReader reader = new BufferedReader(new FileReader(".\\JH_DATA\\JH_Course.txt"))) {
+            String key;
+            while ((key = reader.readLine()) != null) {
+                xcode = reader.readLine();
+                xtitle = reader.readLine();
+                xunits = reader.readLine();
+                xyrLvl = reader.readLine();
 
-    //             Course course = new Course(code, title, units, yrLvl);
-    //             availableCourses.add(course);
-    //             // System.err.println("debug schedule manager"); // for debugging purpose
-    //             // System.err.println("code: " + code);
-    //             // System.err.println("title: " + title);
-    //             // System.err.println("units: " + units);
-    //             // System.err.println("yrLvl: " + yrLvl);
+                Course course = new Course(xcode, xtitle, xunits, xyrLvl);
+                availableCourses.add(course);
+                // System.err.println("debug schedule manager"); // for debugging purpose
+                // System.err.println("code: " + code);
+                // System.err.println("title: " + title);
+                // System.err.println("units: " + units);
+                // System.err.println("yrLvl: " + yrLvl);
 
-    //             // printAvailableCourses();
-    //         }
+                // printAvailableCourses();
+            }
 
-    //     } catch (IOException e) {
-    //         System.out.println("" + e.getMessage());
-    //     }
-    // }
+        } catch (IOException e) {
+            System.out.println("" + e.getMessage());
+        }
+    }
 
     public void printAvailableCourses() { // for debugging purpose
         for (Course course : availableCourses) {
@@ -73,7 +79,6 @@ public class ScheduleManager {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
-
     static String[] availableSchedules = {
         "MONDAY/WEDNESDAY: 09:00 - 12:00",
         "MONDAY/WEDNESDAY: 13:00 - 16:00",
@@ -83,9 +88,9 @@ public class ScheduleManager {
         "TUESDAY/FRIDAY: 17:00 - 20:00",
         "THURSDAY/SATURDAY: 09:00 - 12:00",
         "THURSDAY/SATURDAY: 13:00 - 16:00",
-        "THURSDAY/SATURDAY: 17:00 - 20:00",}; 
+        "THURSDAY/SATURDAY: 17:00 - 20:00",};
 
-    void ScheduleWriter(String code, String section, int selectedScheduleIndex, String room) {
+    static void ScheduleWriter(String code, String section, int selectedScheduleIndex, String room) {
         scheduleID--;
 
         String selectedSchedule = availableSchedules[selectedScheduleIndex - 1];
@@ -119,14 +124,14 @@ public class ScheduleManager {
                                 writer.close();
                             }
                             return;
-                        } 
+                        }
                     }
                 }
             } catch (IOException e) {
                 System.out.println("search METHOD: " + e.getMessage());
             }
-            if(!ifCourseExist){
-                    System.err.println("COURSE: " + code.toUpperCase() + " DOES NOT EXIST \nPLEASE OFFER COURSE IN COURSE MANAGER" );
+            if (!ifCourseExist) {
+                System.err.println("COURSE: " + code.toUpperCase() + " DOES NOT EXIST \nPLEASE OFFER COURSE IN COURSE MANAGER");
             }
         } else {
             System.out.println("SCHEDULE" + selectedSchedule + " AND ROOM " + room + " IS ALREADY BEING USED PLEASE SELECT DIFFERENT TIME/ROOM");
@@ -134,9 +139,54 @@ public class ScheduleManager {
     }
 
     public void add() {
-        ScheduleWriter("MAT00001", "randomx", 1, "JH-10");
-        ScheduleWriter("SCI00001", "randomy", 4, "JH-20");
-        ScheduleWriter("ENG00001", "randomz", 7, "JH-30");
+        String courseCode;
+        String section;
+        int selectedScheduleIndex;
+        String room;
+
+        String confirm;
+
+        do {
+            System.out.print("\033\143");
+            printAvailableCourses();
+            System.out.println("Enter course code");
+            System.out.print(">> ");
+            courseCode = input.nextLine();
+
+            System.out.println("Enter section");
+            System.out.print(">> ");
+            section = input.nextLine();
+
+            do {
+                System.out.print("\033\143");
+                for (int i = 0; i < availableSchedules.length; i++) {
+                    System.out.println("[" + (i + 1) + "] " + availableSchedules[i]);
+                }
+                System.out.print("Enter schedule index (1-9): ");
+                selectedScheduleIndex = input.nextInt();
+                input.nextLine();
+    
+                if (selectedScheduleIndex < 1 || selectedScheduleIndex > 9) {
+                    System.out.println("Invalid index. Please select a valid schedule.");
+                }
+            } while (selectedScheduleIndex < 1 || selectedScheduleIndex > 9);
+
+            System.out.println("Enter room");
+            System.out.print(">> ");
+            room = input.nextLine();
+
+            System.out.print("\033\143");
+            System.out.println("CODE: " + courseCode);
+            System.out.println("SECTION: " + section);
+            System.out.println("SCHEDULLE: " + availableSchedules[selectedScheduleIndex - 1]);
+            System.out.println("YEAR: " + room);
+
+            System.out.println("data entered are valid? [Y/N] ");
+            System.out.print(">> ");
+            confirm = input.nextLine();
+        } while (!confirm.equals("y"));
+
+        ScheduleWriter(courseCode, section, selectedScheduleIndex, room);
     }
 
     public void view() {
@@ -156,8 +206,7 @@ public class ScheduleManager {
                     String courseTitle = reader.readLine();
                     String courseUnits = reader.readLine();
                     String courseYRLvl = reader.readLine();
-                    
-                    
+
                     System.out.println("===========================================================");
                     System.out.println("Section: " + section);
                     System.out.println("Schedule: " + schedule);
@@ -199,7 +248,6 @@ public class ScheduleManager {
 
                         if (currentSection.equalsIgnoreCase(section) && currentSchedule.equals(selectedSchedule)) {
                             System.out.print("\033\143");
-                            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                             System.out.println("CURRENTLY EDITING");
                             System.out.println("Section: " + currentSection);
                             System.out.println("Schedule: " + currentSchedule);
@@ -208,7 +256,6 @@ public class ScheduleManager {
                             System.out.println("Course Title: " + courseTITLE);
                             System.out.println("Units: " + courseUNITS);
                             System.out.println("Year Level: " + courseYRLVL);
-                            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                             classExist = true;
                             int choice;
                             String userInput;
@@ -234,7 +281,6 @@ public class ScheduleManager {
                             switch (choice) {
                                 case 1:
                                     System.out.print("\033\143");
-                                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                                     System.out.println("CURRENTLY EDITING");
                                     System.out.println("Section: " + currentSection);
                                     System.out.println("Schedule: " + currentSchedule);
@@ -243,7 +289,6 @@ public class ScheduleManager {
                                     System.out.println("Course Title: " + courseTITLE);
                                     System.out.println("Units: " + courseUNITS);
                                     System.out.println("Year Level: " + courseYRLVL);
-                                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                                     System.out.println("Update section ");
                                     System.out.print(">> ");
                                     userInput = input.nextLine();
@@ -251,7 +296,6 @@ public class ScheduleManager {
                                     break;
                                 case 2:
                                     System.out.print("\033\143");
-                                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                                     System.out.println("CURRENTLY EDITING");
                                     System.out.println("Section: " + currentSection);
                                     System.out.println("Schedule: " + currentSchedule);
@@ -260,7 +304,6 @@ public class ScheduleManager {
                                     System.out.println("Course Title: " + courseTITLE);
                                     System.out.println("Units: " + courseUNITS);
                                     System.out.println("Year Level: " + courseYRLVL);
-                                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                                     for (int i = 0; i < availableSchedules.length; i++) {
                                         System.out.println("[" + (i + 1) + "]" + availableSchedules[i]);
                                     }
@@ -273,7 +316,6 @@ public class ScheduleManager {
                                     break;
                                 case 3:
                                     System.out.print("\033\143");
-                                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                                     System.out.println("CURRENTLY EDITING");
                                     System.out.println("Section: " + currentSection);
                                     System.out.println("Schedule: " + currentSchedule);
@@ -282,7 +324,6 @@ public class ScheduleManager {
                                     System.out.println("Course Title: " + courseTITLE);
                                     System.out.println("Units: " + courseUNITS);
                                     System.out.println("Year Level: " + courseYRLVL);
-                                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                                     System.out.println("Change room");
                                     System.out.print(">> ");
                                     userInput = input.nextLine();
@@ -332,7 +373,7 @@ public class ScheduleManager {
                     }
                 }
             }
-            if(!classExist){
+            if (!classExist) {
                 System.out.println("CLASS WITH " + section + " " + selectedSchedule + " DOES NOT EXIST");
             }
         } catch (IOException e) {
@@ -386,7 +427,6 @@ public class ScheduleManager {
                             writer.write(courseUNIT + '\n');
                             writer.write(courseYRLVL + '\n');
 
-                            
                         }
                     }
 
@@ -397,8 +437,10 @@ public class ScheduleManager {
                     inputFile.delete();
                     tempFile.renameTo(inputFile);
                 }
-                if(!detect){
-                    { System.out.println("CLASS WITH " + selectedSchedule + " " + selectedSchedule + " DOES NOT EXIST"); }
+                if (!detect) {
+                    {
+                        System.out.println("CLASS WITH " + selectedSchedule + " " + selectedSchedule + " DOES NOT EXIST");
+                    }
                 }
 
             }

@@ -16,7 +16,7 @@ public class CourseManager implements JHinterface {
     static File file = new File(".\\JH_DATA\\JH_Course.txt");
 
     //
-    private static boolean courseExist(String code) {
+    public static boolean courseExist(String code) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String key;
             while ((key = reader.readLine()) != null) {
@@ -28,13 +28,13 @@ public class CourseManager implements JHinterface {
                     }
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception e) { 
             System.out.println("Error checking course existence: " + e.getMessage());
         }
         return false;
     }
 
-    public void courseWritter(String code, String title, String units, String yrLvl) {
+    public static void courseWritter(String code, String title, String units, String yrLvl) {
         String data = "";
         try {
             if (!courseExist(code)) {
@@ -113,13 +113,58 @@ public class CourseManager implements JHinterface {
 
     @Override
     public void add() {
-        courseWritter("mat00001", "Algebra", "3", "1");
-        courseWritter("sci00001", "Physics 2", "3", "2");
-        courseWritter("eng00001", "English 3", "3", "3");
+
+        String courseCode;
+        String title;
+        String units;
+        String yrLvl;
+
+        String confirm;
+        do {
+            System.out.println("Course Offering");
+            System.out.println("Enter code for the course");
+            System.out.print(">> ");
+            courseCode = input.nextLine();
+
+            System.out.println("Enter course title");
+            System.out.print(">> ");
+            title = input.nextLine();
+
+            do {
+                System.out.println("set units of the course");
+                System.out.print(">> ");
+                units = input.nextLine();
+                if (!(units.equals("0") || units.equals("1") || units.equals("3"))) {
+                    System.out.println("Please enter 0, 1 or 3.");
+                }
+            } while (!(units.equals("0") || units.equals("1") || units.equals("3")));
+
+            do {
+                System.out.println("set the year level of the course");
+                System.out.print(">> ");
+                yrLvl = input.nextLine();
+                if (Integer.parseInt(yrLvl) < 1 || Integer.parseInt(yrLvl) > 4) {
+                    System.out.println("ENTER YEAR [1][2][3][4] <<<<<");
+                }
+            } while (Integer.parseInt(yrLvl) < 1 || Integer.parseInt(yrLvl) > 4);
+
+            System.out.println("\033\143");
+            System.out.println("CODE: " + courseCode);
+            System.out.println("TITLE: " + title);
+            System.out.println("UNITS: " + units);
+            System.out.println("YEAR: " + yrLvl);
+
+            System.out.println("data entered are valid? [Y/N] ");
+            System.out.print(">> ");
+            confirm = input.nextLine();
+        } while (!confirm.equalsIgnoreCase("y"));
+
+        courseWritter(courseCode, title, units, yrLvl);
     }
 
     @Override
     public void view() {
+        System.out.print("\033\143");
         courseReader();
     }
 
@@ -265,7 +310,7 @@ public class CourseManager implements JHinterface {
                 while ((line = reader.readLine()) != null) {
                     if (line.equals("##########")) {
                         String courseCode = reader.readLine();
-                        if (courseCode.equals(code)) {
+                        if (courseCode.equalsIgnoreCase(code)) {
                             for (int i = 0; i < 3; i++) {
                                 reader.readLine();
                             }
