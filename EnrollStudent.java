@@ -219,10 +219,11 @@ public class EnrollStudent {
         } while (!confirm.equalsIgnoreCase("Y"));
 
         enrollmentWriter(id, code, schedule);
-
+        input.nextLine();
     }
 
     public void view() {
+        System.out.println('\n');
         LinkedHashMap<String, List<String>> courseDetails = new LinkedHashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(".\\JH_DATA\\Enrolled_Subjects.txt"))) {
             String line;

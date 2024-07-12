@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 class Main {
-    
+
     public static void main(String[] args) {
         StudentManager manageStudent = new StudentManager();
         EnrollStudent enrollment = new EnrollStudent();
@@ -20,7 +20,7 @@ class Main {
         // manageStudent.studentWriter("198012345", "20", "Floyd", "", "Xamora", "1223 Mindanao", "IT", "DA", "Male", "1",
         // "December", "1996");
         // enrollment.registration("201812763");
-        // enrollment.enrollmentWriter("201812763", "MAT00001", 1);
+        // enrollment.enrollmentWriter("201812763", "21321323", 9);
         // enrollment.enrollmentWriter("201812763", "SCI00001", 4);
         // enrollment.enrollmentWriter("201812763", "ENG00001", 7);
         // enrollment.enrollmentWriter("201812345", "MAT00001", 1);
@@ -257,7 +257,6 @@ class Main {
                         System.out.println("[1]add 15 random students value");
                         System.out.println("[2]add 15 random course value");
                         System.out.println("[3]fill all schedules");
-                        System.out.println("[4]enroll students on some of the subjects based on the other methods(must use last)");
                         System.out.print(">> ");
 
                         debugChoice = input.nextLine();
@@ -339,7 +338,7 @@ class Main {
 
                                 ScheduleManager.ScheduleWriter("pe00001", "section-a", 4, "aa-10");
                                 ScheduleManager.ScheduleWriter("pe00001", "section-b", 5, "bb-10");
-                                ScheduleManager.ScheduleWriter("pe00002", "section-c", 6, "cc-10");
+                                ScheduleManager.ScheduleWriter("pe00001", "section-c", 6, "cc-10");
 
                                 ScheduleManager.ScheduleWriter("sci00001", "section-a", 7, "aa-10");
                                 ScheduleManager.ScheduleWriter("sci00001", "section-b", 7, "bb-10");
@@ -347,18 +346,6 @@ class Main {
 
                                 System.out.println("9 schedule has been added");
                                 break;
-                            case "4":
-                            enrollment.enrollmentWriter("201899999", "mat00001", 1);
-                            enrollment.enrollmentWriter("201899999", "pe00001", 7);
-                            enrollment.enrollmentWriter("201899999", "pe00002", 6);
-
-                            enrollment.enrollmentWriter("798018885", "mat00001", 1);
-                            enrollment.enrollmentWriter("798018885", "sci00001", 7);
-                            enrollment.enrollmentWriter("798018885", "pe00001", 4);
-
-                            enrollment.enrollmentWriter("201812345", "pe00001", 5);
-                            enrollment.enrollmentWriter("201812345", "sci00001", 7);
-                            enrollment.enrollmentWriter("201812345", "mat00001", 1);
                         }
 
                         debugChoice = input.nextLine();
@@ -368,6 +355,8 @@ class Main {
                 default:
             }
         } while (!choice.equalsIgnoreCase("EXIT"));
+        
+        
         input.close();
     }
 } // 201812763
